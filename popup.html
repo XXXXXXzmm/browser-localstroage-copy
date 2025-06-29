@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 400px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .input-group {
+      margin-bottom: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 5px;
+      margin-top: 5px;
+    }
+    /* 主要操作按钮样式 */
+    .primary-button {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      border-radius: 4px;
+    }
+    .primary-button:hover {
+      background-color: #45a049;
+    }
+    /* 标签页按钮样式 */
+    .tab-button {
+      padding: 8px 16px;
+      background-color: #f1f1f1;
+      color: #333;
+      border: none;
+      cursor: pointer;
+      margin-right: 5px;
+      border-radius: 4px;
+    }
+    .tab-button.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .keys-container {
+      margin: 10px 0;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    .key-input {
+      display: flex;
+      margin-bottom: 5px;
+    }
+    .key-input input {
+      flex: 1;
+      margin-right: 5px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .remove-key {
+      padding: 5px 10px;
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .remove-key:hover {
+      background-color: #cc0000;
+    }
+    .history-container {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+    }
+    .history-item {
+      padding: 8px;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #f9f9f9;
+    }
+    .history-item:hover {
+      background-color: #f0f0f0;
+    }
+    .operation-type {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    .copy-badge {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .extract-badge {
+      background-color: #2196F3;
+      color: white;
+    }
+    .extract-type {
+      border-left: 3px solid #2196F3;
+    }
+    .tab-buttons {
+      margin-bottom: 10px;
+      display: flex;
+      gap: 5px;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .button-group {
+      margin-top: 10px;
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="tab-buttons">
+    <button id="copyTabBtn" class="tab-button active">复制</button>
+    <button id="historyTabBtn" class="tab-button">历史记录</button>
+  </div>
+
+  <div id="copyTab" class="tab-content active">
+    <div class="input-group">
+      <label for="sourceUrl">源网站 URL：</label>
+      <input type="text" id="sourceUrl" placeholder="例如：https://example.com">
+    </div>
+    <div class="keys-container">
+      <div class="key-input">
+        <input type="text" class="key-input-field" placeholder="输入 localStorage 的 key">
+        <button class="remove-key">-</button>
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="addKeyBtn" class="primary-button">添加 Key</button>
+      <button id="copyButton" class="primary-button">复制到当前网站</button>
+      <button id="copyLocalStorageButton" class="primary-button">提取指定key</button>
+    </div>
+  </div>
+
+  <div id="historyTab" class="tab-content">
+    <div id="historyList" class="history-container"></div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 
