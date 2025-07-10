@@ -242,6 +242,27 @@ document.getElementById('copyButton').addEventListener('click', async () => {
   }
 });
 
+// 获取当前URL按钮
+document.getElementById('getCurrentUrlBtn').addEventListener('click', async () => {
+  try {
+    // 获取当前标签页
+    const [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+    
+    if (!currentTab.url || currentTab.url.startsWith('chrome://') || 
+        currentTab.url.startsWith('edge://') || currentTab.url.startsWith('about:') || 
+        currentTab.url.startsWith('chrome-extension://')) {
+      alert('无法在此类型的页面上获取URL。请在普通网页上使用此功能。');
+      return;
+    }
+
+    // 设置URL到输入框
+    document.getElementById('sourceUrl').value = currentTab.url;
+  } catch (error) {
+    console.error('Error:', error);
+    alert('获取当前URL失败：' + error.message);
+  }
+});
+
 // 初始化
 document.addEventListener('DOMContentLoaded', () => {
   // 添加第一个 key 输入框
