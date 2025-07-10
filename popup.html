@@ -136,7 +136,10 @@
   <div id="copyTab" class="tab-content active">
     <div class="input-group">
       <label for="sourceUrl">源网站 URL：</label>
-      <input type="text" id="sourceUrl" placeholder="例如：https://example.com">
+      <div style="display: flex; gap: 5px;">
+        <input type="text" id="sourceUrl" placeholder="例如：https://example.com" style="flex: 1;">
+        <button id="getCurrentUrlBtn" class="primary-button" style="white-space: nowrap;">获取当前URL</button>
+      </div>
     </div>
     <div class="keys-container">
       <div class="key-input">
